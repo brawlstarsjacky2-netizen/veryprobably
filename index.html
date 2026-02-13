@@ -1,21 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <meta charset="UTF-8">
-  <script src="https://discord.com/api/embed.js"></script>
+  <title>Video Aleatorio</title>
+  <style>
+    body {
+      background: #2c2f33;
+      color: white;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      padding: 50px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      cursor: pointer;
+      background-color: #7289da;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #5b6eae;
+    }
+    video {
+      margin-top: 20px;
+      border: 2px solid #7289da;
+      border-radius: 10px;
+    }
+  </style>
 </head>
-
-<body style="background:#2c2f33; color:white; text-align:center;">
+<body>
 
 <h1>veryprobably</h1>
 
 <video id="videoPlayer" width="500" controls></video>
 <br><br>
-<button onclick="cambiarVideo()">veryprobably</button>
+<button onclick="cambiarVideo()">Mostrar Video</button>
 
 <script>
 const videos = [
- "https://files.catbox.moe/jeaj83.mp4",
+  "https://files.catbox.moe/jeaj83.mp4",
   "https://files.catbox.moe/1vx696.mp4",
   "https://files.catbox.moe/5k03ch.mp4",
   "https://files.catbox.moe/u5ozw7.mp4"
@@ -24,10 +49,20 @@ const videos = [
 function cambiarVideo() {
   const random = Math.floor(Math.random() * videos.length);
   const player = document.getElementById("videoPlayer");
+
+  // Pausar y resetear antes de cambiar
+  player.pause();
+  player.currentTime = 0;
+
+  // Cambiar fuente
   player.src = videos[random];
-  player.play();
+
+  // Cargar y reproducir, atrapar errores de autoplay
+  player.load();
+  player.play().catch(err => console.log("Error al reproducir:", err));
 }
 </script>
 
 </body>
-</html> 
+</html>
+
