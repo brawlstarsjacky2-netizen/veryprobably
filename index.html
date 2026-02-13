@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body style="text-align:center; background:#2c2f33; color:white;">
+
+<h1>veryprobably</h1>
+
+<video id="videoPlayer" width="500" controls></video>
+<br><br>
+<button onclick="cambiarVideo()">veryprobably</button>
+
+<script>
+const videos = [
+  "video1.mp4",
+  "video2.mp4",
+  "video3.mp4",
+  "video4.mp4"
+];
+
+function cambiarVideo() {
+  const random = Math.floor(Math.random() * videos.length);
+  const player = document.getElementById("videoPlayer");
+  player.src = videos[random];
+  player.play();
+}
+</script>
+
+</body>
+</html>
